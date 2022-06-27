@@ -54,4 +54,15 @@ async function deleteTalker(request, response) {
    return response.status(500).json({ error: err.message });
  }
 }
-module.exports = { getAllTalkers, getTalkerById, createTalker, editTalker, deleteTalker };
+
+async function searchTalker(request, response) {
+  try {
+   const { q } = request.query;
+   const result = await talkersUseCase.searchTalker(q);
+   return response.status(200).json(result);
+  } catch (err) {
+    return response.status(500).json({ error: err.message });
+  }
+}
+module.exports = { 
+  getAllTalkers, getTalkerById, createTalker, editTalker, deleteTalker, searchTalker };

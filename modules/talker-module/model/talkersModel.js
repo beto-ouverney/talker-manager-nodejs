@@ -59,4 +59,15 @@ try {
 }
 }
 
-module.exports = { getAllTalkersModel, getTalkerById, createTalker, editTalker, deleteTalker };
+async function searchTalker(name) {
+  try {
+    const data = await readJson();
+    const talkers = data.filter((e) => e.name.toLowerCase().includes(name.toLowerCase()));
+    return talkers;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+module.exports = { 
+  getAllTalkersModel, getTalkerById, createTalker, editTalker, deleteTalker, searchTalker };

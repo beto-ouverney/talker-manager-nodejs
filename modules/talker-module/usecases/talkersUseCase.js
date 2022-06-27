@@ -49,4 +49,15 @@ async function deleteTalker(id) {
     throw new Error(err.message);
   }
 }
-module.exports = { getAllTalkersUseCase, getTalkerById, createTalker, editTalker, deleteTalker };
+
+async function searchTalker(name) {
+  try {
+    const talkers = await talkerModel.searchTalker(name);
+    return talkers;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+module.exports = { 
+  getAllTalkersUseCase, getTalkerById, createTalker, editTalker, deleteTalker, searchTalker };
