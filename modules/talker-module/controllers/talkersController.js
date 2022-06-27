@@ -5,8 +5,16 @@ async function getAllTalkers(request, response) {
     const data = await talkersUseCase.getAllTalkersUseCase();
     return response.status(200).json(data);
   } catch (err) {
-    throw new Error(err.message);
+    return response.status(500).json({ error: err.message });
   }
 }
 
-module.exports = { getAllTalkers };
+async function getTalkerById(request, response) {
+  const { id } = request.params;
+  const result = await talkersUseCase.getTalkerById(id);
+  if (result.error) {
+    return response.status(result.error.status).json({ message: result.error.message });
+  }
+    return response.status(200).json(result.talker);
+}
+module.exports = { getAllTalkers, getTalkerById };
