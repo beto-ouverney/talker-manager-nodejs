@@ -27,6 +27,14 @@ const error = {
     status: 400,
     message: 'O campo "password" é obrigatório',
   },
+  rateIsRequired: {
+    status: 400,
+    message: 'O campo "rate" é obrigatório',
+  },
+  watchedAtIsRequired: {
+    status: 400,
+    message: 'O campo "watchedAt" é obrigatório',
+  },
   invalidPassword: {
     status: 400,
     message: 'O "password" deve ter pelo menos 6 caracteres',
@@ -58,7 +66,7 @@ const error = {
   talkIsRequired: {
     status: 400,
     message:
-      'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios',
+      'O campo "talk" é obrigatório',
   },
   invalidWathedAt: {
     status: 400,

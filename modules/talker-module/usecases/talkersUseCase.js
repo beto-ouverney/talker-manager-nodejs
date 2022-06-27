@@ -23,4 +23,13 @@ async function getTalkerById(id) {
       throw new Error(err.message);
     }
 }
-module.exports = { getAllTalkersUseCase, getTalkerById };
+
+async function createTalker(talker) {
+  try {
+    const newTalker = await talkerModel.createTalker(talker);
+    return newTalker;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+module.exports = { getAllTalkersUseCase, getTalkerById, createTalker };

@@ -1,4 +1,5 @@
 const { readJson } = require('../../../helpers/readJson');
+const { writeJson } = require('../../../helpers/writeJson');
 
 async function getAllTalkersModel() {
   try {
@@ -19,4 +20,21 @@ async function getTalkerById(id) {
   }
 } 
 
-module.exports = { getAllTalkersModel, getTalkerById };
+async function createTalker(talker) {
+  try {
+    const data = await readJson();
+    const talkers = data.sort((a, b) => a.id - b.id);
+    const { id } = talkers[talkers.length - 1];
+    const newTalker = {
+      id: id + 1,
+      ...talker,
+    };
+    data.push(newTalker);
+    await writeJson(data);
+    return newTalker;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+module.exports = { getAllTalkersModel, getTalkerById, createTalker };

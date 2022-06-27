@@ -17,4 +17,11 @@ async function getTalkerById(request, response) {
   }
     return response.status(200).json(result.talker);
 }
-module.exports = { getAllTalkers, getTalkerById };
+
+async function createTalker(request, response) {
+  const { name, age, talk } = request.body;
+  const talker = { name, age, talk };
+  const result = await talkersUseCase.createTalker(talker);
+  return response.status(201).json(result);
+}
+module.exports = { getAllTalkers, getTalkerById, createTalker };
