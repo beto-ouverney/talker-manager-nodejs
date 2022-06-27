@@ -41,4 +41,12 @@ async function editTalker(talker) {
     throw new Error(err.message);
   }
 }
-module.exports = { getAllTalkersUseCase, getTalkerById, createTalker, editTalker };
+
+async function deleteTalker(id) {
+  try {
+    await talkerModel.deleteTalker(id);
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+module.exports = { getAllTalkersUseCase, getTalkerById, createTalker, editTalker, deleteTalker };

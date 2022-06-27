@@ -15,4 +15,7 @@ talkerRoutes.post('/talker', tokenValidations,
 talkerRoutes.put('/talker/:id', 
 tokenValidations, talkerValidations, async (req, res) => talkersController.editTalker(req, res));
 
+talkerRoutes.delete('/talker/:id', tokenValidations, async (req, res) => talkersController
+.deleteTalker(req, res));
+
 module.exports = { talkerRoutes };

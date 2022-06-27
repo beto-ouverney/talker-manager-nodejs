@@ -10,26 +10,48 @@ async function getAllTalkers(request, response) {
 }
 
 async function getTalkerById(request, response) {
-  const { id } = request.params;
-  const result = await talkersUseCase.getTalkerById(id);
-  if (result.error) {
-    return response.status(result.error.status).json({ message: result.error.message });
-  }
-    return response.status(200).json(result.talker);
+  try {
+   const { id } = request.params;
+   const result = await talkersUseCase.getTalkerById(id);
+   if (result.error) {
+     return response.status(result.error.status).json({ message: result.error.message });
+   }
+     return response.status(200).json(result.talker);
+  } catch (err) {
+    return response.status(500).json({ error: err.message }); 
+  }   
 }
 
 async function createTalker(request, response) {
-  const { name, age, talk } = request.body;
-  const talker = { name, age, talk };
-  const result = await talkersUseCase.createTalker(talker);
-  return response.status(201).json(result);
+  try {
+   const { name, age, talk } = request.body;
+   const talker = { name, age, talk };
+   const result = await talkersUseCase.createTalker(talker);
+   return response.status(201).json(result);
+ } catch (err) {
+   return response.status(500).json({ error: err.message }); 
+ }
 }
 
 async function editTalker(request, response) {
-  const { name, age, talk } = request.body;
-  const { id } = request.params;
-  const talker = { id: Number(id), name, age, talk };
-  const result = await talkersUseCase.editTalker(talker);
-  return response.status(200).json(result);
+  try {
+   const { name, age, talk } = request.body;
+   const { id } = request.params;
+   const talker = { id: Number(id), name, age, talk };
+   const result = await talkersUseCase.editTalker(talker);
+   return response.status(200).json(result);
+  } catch (err) {
+    return response.status(500).json({ error: err.message }); 
+  }
 }
-module.exports = { getAllTalkers, getTalkerById, createTalker, editTalker };
+
+async function deleteTalker(request, response) {
+ try {  
+  const { id } = request.params;
+  await talkersUseCase.deleteTalker(+id);
+  return response.status(204).end();
+ } catch (err) {
+   return response.status(500).json({ error: err.message });
+ }
+}
+module.exports = { getAllTalkers, getTalkerById, createTalker, editTalker, deleteTalker };
