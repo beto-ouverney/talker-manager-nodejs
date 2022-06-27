@@ -32,4 +32,13 @@ async function createTalker(talker) {
     throw new Error(err.message);
   }
 }
-module.exports = { getAllTalkersUseCase, getTalkerById, createTalker };
+
+async function editTalker(talker) {
+  try {
+    const editedTalker = await talkerModel.editTalker(talker);
+    return editedTalker;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+module.exports = { getAllTalkersUseCase, getTalkerById, createTalker, editTalker };

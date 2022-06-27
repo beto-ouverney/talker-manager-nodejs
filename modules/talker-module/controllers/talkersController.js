@@ -24,4 +24,12 @@ async function createTalker(request, response) {
   const result = await talkersUseCase.createTalker(talker);
   return response.status(201).json(result);
 }
-module.exports = { getAllTalkers, getTalkerById, createTalker };
+
+async function editTalker(request, response) {
+  const { name, age, talk } = request.body;
+  const { id } = request.params;
+  const talker = { id: Number(id), name, age, talk };
+  const result = await talkersUseCase.editTalker(talker);
+  return response.status(200).json(result);
+}
+module.exports = { getAllTalkers, getTalkerById, createTalker, editTalker };

@@ -12,4 +12,7 @@ talkerRoutes.get('/talker/:id', async (req, res) => talkersController.getTalkerB
 talkerRoutes.post('/talker', tokenValidations,
  talkerValidations, async (req, res) => talkersController.createTalker(req, res));
 
+talkerRoutes.put('/talker/:id', 
+tokenValidations, talkerValidations, async (req, res) => talkersController.editTalker(req, res));
+
 module.exports = { talkerRoutes };

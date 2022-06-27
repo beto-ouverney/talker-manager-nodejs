@@ -37,4 +37,18 @@ async function createTalker(talker) {
   }
 }
 
-module.exports = { getAllTalkersModel, getTalkerById, createTalker };
+async function editTalker(talker) {
+  try {
+    const data = await readJson();
+    console.log(talker.id);
+    const talkers = data.filter((e) => e.id !== talker.id);
+    talkers.push(talker);
+    await writeJson(talkers);
+    console.log(talker);
+    return talker;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+module.exports = { getAllTalkersModel, getTalkerById, createTalker, editTalker };
