@@ -1,4 +1,4 @@
-import fs from 'fs/promises';
+const fs = require('fs/promises');
 
 async function writeJson(talkers) {
   try {
@@ -11,4 +11,4 @@ async function writeJson(talkers) {
   }
 }
 
-export default writeJson;
+module.exports = { writeJson };

@@ -1,4 +1,4 @@
-import fs from 'fs/promises';
+const fs = require('fs/promises');
 
 async function readJson() {
   try {
@@ -10,4 +10,4 @@ async function readJson() {
   }
 }
 
-export default readJson;
+module.exports = { readJson };

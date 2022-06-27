@@ -1,10 +1,8 @@
-import { Router } from 'express';
-import { talkerRoutes } from './talkerRoutes';
-import { userRoutes } from './userRoutes';
+const { Router } = require('express');
+const { talkerRoutes } = require('./talkerRoutes');
 
 const router = Router();
 
 router.use(talkerRoutes);
-router.use(userRoutes);
 
-export default router;
+module.exports = { router };

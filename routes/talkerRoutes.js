@@ -1,7 +1,8 @@
-import { Router } from 'express';
+const { Router } = require('express');
+const talkersController = require('../modules/talker-module/controllers/talkersController');
 
 const talkerRoutes = Router();
 
-talkerRoutes.get('/talker', '');
+talkerRoutes.get('/talker', async (req, res) => talkersController.getAllTalkers(req, res));
 
-export default talkerRoutes;
+module.exports = { talkerRoutes };
